@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {
-    violet, blackA
-  } from '@radix-ui/colors';
+
 
 export const Input = styled.input`
     all: 'unset';
@@ -16,8 +14,8 @@ export const Input = styled.input`
     font-size: 15;
     line-height: 1;
     color: 'white';
-    background-color: ${violet.violet5};
-    box-shadow: 0 0 0 1px ${violet.violet9};
+    background-color: red;
+    box-shadow: 0 0 0 1px yellow;
     &:focus { 
         box-shadow: 0 0 0 2px black
     }
