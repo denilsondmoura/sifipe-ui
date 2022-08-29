@@ -1,5 +1,5 @@
 import React from "react";
-import { Despesa } from "../telas/Despesas";
+import { DespesasView } from "../views/Despesas";
 import {
     BrowserRouter as Router,
     Route,
@@ -12,7 +12,7 @@ export const AppRouter = function () {
 return (
     <Router>
         <Routes>
-            <Route path="/despesa" element={<Despesa/>} />
+            <Route path="/despesa" element={<DespesasView/>} />
         </Routes>
     </Router>
     )
