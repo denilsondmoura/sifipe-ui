@@ -1,62 +1,51 @@
 import React from "react"
-import { Col, Container, Row } from "react-bootstrap";
+import { Accordion, Col, Container, Row } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Stack from 'react-bootstrap/Stack';
-import { WhiteBoard, BackgroundTop, BackgroundBot, Content } from "./style";
+import Select from 'react-select'
+import { WhiteBoard, BackgroundTop, BackgroundBot, FormStyled } from "./style";
 
 export const DespesasView = function () {
 
+const options = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' }
+]
     return (
         <>
             <BackgroundTop>.</BackgroundTop>
             <BackgroundBot>.</BackgroundBot>
+            
             <WhiteBoard>
-                <Content>.</Content>
-                {/* <Form>
-                    <Form.Group className="mb-3" controlId="formGroupEmail">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formGroupPassword">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
-                    </Form.Group>
-                </Form> */}
+                <Accordion defaultActiveKey="0">
+                    <Accordion.Item eventKey="0">
+                        <Accordion.Header>Adicionar um gasto</Accordion.Header>
+                        <Accordion.Body>
+                            <FormStyled>
+                                <Form.Group className="mb-3" controlId="formTipoDespessa">
+                                    <Form.Label>Tipo</Form.Label>
+                                    <Select options={options} />
+                                </Form.Group>
+                                <Row>
+                                    <Form.Label>Valor (R$)</Form.Label>
+                                </Row>
+                                <Row>
+                                    <Col md={10}>
+                                        <Form.Control type="number" placeholder="Ex.: 20,00" />
+                                    </Col>
+                                    <Col md={2}>
+                                        <Button style={{backgroundColor: "#115571", width: "100%"}} variant="primary" type="submit">
+                                            Salvar
+                                        </Button>
+                                    </Col>
+                                </Row>
+                            </FormStyled>
+                        </Accordion.Body>
+                    </Accordion.Item>
+                </Accordion>
+                
             </WhiteBoard>
         </>
-        // <Container>
-            // <Container className="justify-content" >
-            //     <Row>
-            //         <Col md={8}>
-                          
-            //         <Row>
-            //             <Col md={9}>
-            //                 <Form.Group className="mb-3" controlId="formTipoDespessa">
-            //                     <Form.Label>Tipo</Form.Label>
-            //                     <Form.Select aria-label="Default select example">
-            //                         <option>Open this select menu</option>
-            //                         <option value="1">One</option>
-            //                         <option value="2">Two</option>
-            //                         <option value="3">Three</option>
-            //                     </Form.Select>
-            //                 </Form.Group>
-            //             </Col>
-            //             <Col md={3}>
-            //                 <Form.Group className="mb-3" controlId="formValorDespesa">
-            //                     <Form.Label>Valor (R$)</Form.Label>
-            //                     <Form.Control type="text" placeholder="Ex.: 20,00" />
-            //                 </Form.Group>
-            //             </Col>
-            //         </Row>
-            //         <Row>
-            //             <Button style={{backgroundColor: "#115571"}} variant="primary" type="submit">
-            //                 Registrar
-            //             </Button>
-            //         </Row>
-            //         </Col>
-            //     </Row>                
-            // </Container>
-        // </Container>
     )
 }
