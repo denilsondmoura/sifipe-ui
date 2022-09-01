@@ -1,5 +1,5 @@
 import React from "react";
-import { DespesasView } from "../views/Despesas";
+import { DespesasView } from "../pages/Despesas";
 import {
     BrowserRouter as Router,
     Route,

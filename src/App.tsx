@@ -10,8 +10,7 @@ function App() {
     <div>
       <GlobalStyle/>
       <AppRouter/>
-    </div>
-    
+    </div> 
   )
 }
 

@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 export const Section = styled.section`
     background-color: #f5f5f5;
-    color: #fff
+    color: #fff;
     justify-content: center;
     width: 70%;
     margin: 20px auto;
