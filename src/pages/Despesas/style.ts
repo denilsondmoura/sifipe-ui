@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 // primary #31AFB4
 // secundary #115571
+// tertiary #82CFD2
+// #C1E7E8
 
 export const BackgroundTop = styled.div`
     background-color: #31AFB4;
@@ -9,7 +11,7 @@ export const BackgroundTop = styled.div`
     height: 15vh;
 `
 export const BackgroundBot = styled.div`
-    background-color: #115571;
+    background-color: #C1E7E8;
     width: 100vw;
     height: 85vh;
 `

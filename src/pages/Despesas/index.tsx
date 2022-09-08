@@ -1,11 +1,9 @@
-import axios from "axios";
+import api from "../../services/api";
 import React, { useEffect, useState } from "react"
-import { Accordion, Col, Container, Row, Toast } from "react-bootstrap";
+import { Accordion, Col, Row } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Select from 'react-select'
-import { useGet } from "../../services/useGet";
-import { usePost } from "../../services/usePost";
 import { WhiteBoard, BackgroundTop, BackgroundBot, FormStyled } from "./style";
 import CategoriaDespesa from "../../models/CategoriaDespesa"
 import Despesa from "../../models/Despesa"
@@ -13,17 +11,17 @@ import Despesa from "../../models/Despesa"
 export const DespesasView = function () {
 
     const [catDespesa, setCatDespesa] = useState<CategoriaDespesa | null>(null)
-    const [valor, setValor] = useState<number | null>()
-    const [descricao, setDescricao] = useState<string | null>()
+    const [valor, setValor] = useState<string | number | string[] | undefined>(0)
+    const [descricao, setDescricao] = useState<string | number | string[] | undefined>("")
 
-    function handleChangeCategoria(event) {
+    function handleChangeCategoria(e) {
         setCatDespesa({
-            descricao: event.label,
-            id: event.value
+            descricao: e.label,
+            id: e.value
         })
     }
 
-    const cadastrarDespesa = (e) => {
+    function cadastrarDespesa(e) {
         e.preventDefault();
         let despesa = {
             categoria: catDespesa,
@@ -31,23 +29,26 @@ export const DespesasView = function () {
             valor: valor
         }
 
-        usePost("https://sifipe-api.herokuapp.com/despesa", despesa)
-        setDescricao("")
-        setValor(0)
-        setCatDespesa(null)
-
-        console.log(catDespesa);
+        api.post("/despesa", despesa).then((res) => {
+            setDescricao("")
+            setValor(0)
+            setCatDespesa(null)
+        })
+        
     }
     
-    const { data: categorias } = useGet<CategoriaDespesa[]>("https://sifipe-api.herokuapp.com/categoriaDespesa")
-
     let categoriaDespesaOptions = Array()
-    categorias?.forEach(categoria => {
-        categoriaDespesaOptions.push({
-            value: categoria.id,
-            label: categoria.descricao,
-        }) 
-    });
+    api.get<CategoriaDespesa[]>("/categoriaDespesa").then((res) => {
+        let categorias = res.data
+        categorias?.forEach(categoria => {
+            categoriaDespesaOptions.push({
+                value: categoria.id,
+                label: categoria.descricao
+            }) 
+        });
+    })
+
+    
 
     return (
         <>
@@ -55,9 +56,9 @@ export const DespesasView = function () {
             <BackgroundBot>.</BackgroundBot>
             
             <WhiteBoard>
-                <Accordion defaultActiveKey="0">
-                    <Accordion.Item eventKey="0">
-                        <Accordion.Header>ADICIONAR UM GASTO</Accordion.Header>
+                <Accordion defaultActiveKey="0" >
+                    <Accordion.Item eventKey="0" >
+                        <Accordion.Header >ADICIONAR UM GASTO</Accordion.Header>
                         <Accordion.Body>
                             <FormStyled onSubmit={cadastrarDespesa}>
                                 <Form.Group className="mb-3" controlId="formDescricao">
@@ -84,7 +85,7 @@ export const DespesasView = function () {
                                         </Form.Group>
                                     </Col>
                                     <Col md={2} style={{marginTop: "30px"}}>
-                                        <Button style={{backgroundColor: "#115571", width: "100%"}} variant="primary" type="submit" >
+                                        <Button style={{backgroundColor: "#31AFB4", borderColor: "#31AFB4", width: "100%"}} variant="primary" type="submit" >
                                             Salvar
                                         </Button>
                                     </Col>
@@ -92,9 +93,9 @@ export const DespesasView = function () {
                             </FormStyled>
                         </Accordion.Body>
                     </Accordion.Item>
-                </Accordion>
-                
+                </Accordion>  
             </WhiteBoard>
+            
         </>
     )
 }

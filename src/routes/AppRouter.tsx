@@ -11,8 +11,8 @@ export const AppRouter = function () {
 
 return (
     <Router>
-        <Routes>
-            <Route path="/despesa" element={<DespesasView/>} />
+        <Routes >
+            <Route path="/" element={<DespesasView/>} />
         </Routes>
     </Router>
     )
