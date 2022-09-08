@@ -6,12 +6,12 @@ import styled from "styled-components";
 export const BackgroundTop = styled.div`
     background-color: #31AFB4;
     width: 100vw;
-    height: 50vh;
+    height: 15vh;
 `
 export const BackgroundBot = styled.div`
     background-color: #115571;
     width: 100vw;
-    height: 50vh;
+    height: 85vh;
 `
 
 export const WhiteBoard = styled.div`
