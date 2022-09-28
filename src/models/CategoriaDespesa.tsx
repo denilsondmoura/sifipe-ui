@@ -1,4 +1,4 @@
 export default interface CategoriaDespesa {
-    descricao: string;
+    description: string;
     id: number;
 }
